@@ -6,6 +6,7 @@ import io
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from tqdm import tqdm
 from scipy.interpolate import interp1d
 
 from evaluation_thumos import prop_eval
@@ -53,7 +54,7 @@ def evaluate_proposals(cfg, nr_proposals_list=(50, 100, 200, 500, 1000)):
 
 def plot_metric(average_nr_proposals, recalls, labels, colors, linestyles, figure_file):
     fn_size = 25
-    plt.figure(num=None, figsize=(30, 10))
+    plt.figure(num=None, figsize=(30, 12))
 
     #colors = ['#2CBDFE', '#47DBCD', '#F3A0F2', '#9D2EC5', '#661D98', '#F5B14C']
 
@@ -75,18 +76,18 @@ def plot_metric(average_nr_proposals, recalls, labels, colors, linestyles, figur
     ax = plt.subplot(1, 2, 1)
     plotting(
         ax,
-        recalls[:3],
-        labels[:3],
-        linestyles[:3],
-        colors[:3]
+        recalls[:4],
+        labels[:4],
+        linestyles[:4],
+        colors[:4]
     )
     ax = plt.subplot(1, 2, 2)
     plotting(
         ax,
-        recalls[3:],
-        labels[3:],
-        linestyles[3:],
-        [colors[0]] + colors[3:]
+        recalls[4:],
+        labels[4:],
+        linestyles[4:],
+        [colors[0]] + colors[4:]
     )
 
     # plt.show()
@@ -109,28 +110,31 @@ def main():
         'full_arch.pkl',
         'act_only.pkl',
         'env_only.pkl',
+        'no_interaction.pkl',
         'full_arch.pkl',
         'env+hard_attn_only.pkl',
         'env+self_attn_only.pkl',
     ]
     labels = [
-        'AEI (actor and environment)',
-        'Actor only',
-        'Environment only',
+        'AEI (all spectators)',
+        'Actors spectator only',
+        'Environment spectator only',
+        'W/o interaction spectator',
         'AEI (main actor selection and feature fusion)',
-        'w/o feature fusion',
-        'w/o main actor selection',
+        'W/o feature fusion',
+        'W/o main actor selection',
     ]
     #colors = ['#2f4858', '#55dde0', '#33658a', '#f6ae2d', '#f26419']
     #colors = ['#390099', '#9e0059', '#ff0054', '#ff5400', '#ffbd00']
-    colors = ['tab:red', 'tab:purple', 'tab:green', 'tab:blue', 'tab:orange']
-    linestyles = ['-'] * 6
+    colors = ['tab:red', 'tab:purple', 'tab:green', 'tab:pink', 'tab:blue', 'tab:orange']
+    linestyles = ['-'] * 7
 
     nr_props = list(range(50, 1000))
 
     ar_results = []
-    for res_file in result_files:
+    for res_file in tqdm(result_files):
         ar_results.append(main_evaluate_proposals(os.path.join(result_dir, res_file), nr_props))
+    print('Finished evaluating, start plotting!')
     plot_metric(nr_props, ar_results, labels, colors, linestyles, 'ablation_study.png')
 
 

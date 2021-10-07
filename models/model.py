@@ -119,6 +119,8 @@ class EventDetection(nn.Module):
 
             fuser_output = self.agents_environment_fuser(fuser_input)
             fuser_output = torch.mean(fuser_output, dim=0)
+            #fuser_output = fuser_input
+            #fuser_output = torch.mean(fuser_output, dim=0)
             context_features[:, smpl_bgn:smpl_end] = fuser_output.view(bsz, -1, ft_sz)
 
         return self.event_detector(context_features.permute(0, 2, 1))

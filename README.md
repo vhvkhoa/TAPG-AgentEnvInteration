@@ -34,6 +34,4 @@ python main.py --cfg-file config/anet_proposals.yaml MODE 'validation' GPU_IDS [
 
 This implementation is partly based on this [pytorch-implementation of BMN](https://github.com/JJBOY/BMN-Boundary-Matching-Network.git).
 
-paper:[AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation](https://arxiv.org/abs/1907.09702)
-
-
+paper:[AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation](will update soon)

@@ -1,71 +1,39 @@
-# BMN: Boundary-Matching Network
+# AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation
 
 A pytorch-version implementation codes of paper:
- "BMN: Boundary-Matching Network for Temporal Action Proposal Generation",
-  which is accepted in ICCV 2019. 
-
-[[Arxiv Preprint]](https://arxiv.org/abs/1907.09702)
-
-## Result
-__Update(2019-10-17)__: 
-I update the pytorch BMN codebase according to PaddlePaddle code provided by Baidu officially.
-Now my codebase get very close results to the paper. Actually my results are slightly __higher__ 
-than the original paper. The model can be download [here](https://pan.baidu.com/s/1Fm4niHixw53cdhuuhf5baA).
-
-
-|  AN  | Recall |
-| ---- |  ----  |
-| AR@1 |  33.7% |
-| AR@5 |  49.6% |
-| AR@10|  57.1% |
-|AR@100|  75.3% |
-| AUC  |  67.5  |
-
-
-![](./img/evaluation_result.jpg)
+ "AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation",
+  which is accepted in BMVC 2021.
 
 ## Prerequisites
-
-These code is  implemented in Pytorch 0.4.1 + Python3 . 
-
-
-## Download Datasets
-
- The author rescaled the feature length of all videos 
-to same length 100, and he provided the rescaled feature at 
- [here](https://github.com/wzmsltw/BSN-boundary-sensitive-network) .
+* Python 3.8
+* Pytorch 1.9
+* fvcore
+* numpy, pandas, matplotlib, tensorboardX etc.
 
 
-## Training and Testing  of BMN
+## Download Features
+3D Resnet-50 features extracted from rescaled videos of ActivityNet-1.3 can be downloaded
+[here](will be updated soon).
 
-All configurations of BMN are saved in opts.py, where you can modify training and model parameter.
+## Training and Testing  of AEI
+Default configurations of AEI are stored in config/defaults.py.
+The modified configurations are stored in config/*.yaml for training and testing of AEI on different datasets (ActivityNet-1.3 and THUMOS-14).
+We can also modify configurations through commandline arguments.
 
-
-
-1. To train the BMN:
+1. To train AEI on TAPG task of ActivityNet-1.3 with 1 GPU:
 ```
-python main.py --mode train
+python main.py --cfg-file config/anet_proposals.yaml MODE 'training' GPU_IDS [0]
 ```
 
-2. To get the inference proposal of the validation videos and evaluate the proposals with recall and AUC:
+2. To evaluate AEI on validation set of ActivityNet-1.3 with 1 GPU:
 ```
-python main.py --mode inference
+python main.py --cfg-file config/anet_proposals.yaml MODE 'validation' GPU_IDS [0]
 ```
-
-Of course, you can complete all the process above in one line: 
-
-```
-sh bmn.sh
-```
-
-
 
 ## Reference
 
-This implementation largely borrows from [BSN](https://github.com/wzmsltw/BSN-boundary-sensitive-network) by [Tianwei Lin](https://github.com/wzmsltw).
+This implementation is partly based on this [pytorch-implementation of BMN](https://github.com/JJBOY/BMN-Boundary-Matching-Network.git).
 
-code:[BSN](https://github.com/wzmsltw/BSN-boundary-sensitive-network)
-
-paper:[BMN: Boundary-Matching Network for Temporal Action Proposal Generation](https://arxiv.org/abs/1907.09702)
+paper:[AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation](https://arxiv.org/abs/1907.09702)
 
 

@@ -12,8 +12,9 @@ A pytorch-version implementation codes of paper:
 
 
 ## Download Features
-3D Resnet-50 features extracted from rescaled videos of ActivityNet-1.3 can be downloaded
-[here](will be updated soon).
+3D Resnet-50 features extracted from rescaled videos of ActivityNet-1.3 can be downloaded below:
+* Environment features are [here](https://drive.google.com/file/d/1hPhcQ7EzyCh0A3SyZfgZScFVFZMEvVhe/view?usp=sharing) (~80GB uncompressed).
+* Actor features are [here](to be updated).
 
 ## Training and Testing  of AEI
 Default configurations of AEI are stored in config/defaults.py.

@@ -10,6 +10,7 @@ A pytorch-version implementation codes of paper:
 * fvcore
 * numpy, pandas, matplotlib, tensorboardX etc.
 
+Please refer to [here](installation-guide.md) for an installation guide.
 
 ## Download Features
 3D Resnet-50 features extracted from rescaled videos of ActivityNet-1.3 can be downloaded below:

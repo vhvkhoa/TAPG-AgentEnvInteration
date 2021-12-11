@@ -47,3 +47,31 @@ paper: [AEI: Actors-Environment Interaction with Adaptive Attention for Temporal
 1q. "UserWarning: This DataLoader will create 12 worker processes in total. Our suggested max number of worker in current system is #, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary."
 
 1a. Change num_workers to # in line 171 of root>main.py>inference function
+
+## Citation
+If you find AEI useful for your research, please consider citing:
+```
+@inproceedings{khoavo_aei_bmvc21,
+  author    = {Khoa Vo and
+               Hyekang Joo and 
+               Kashu Yamazaki and 
+               Sang Truong and 
+               Kris Kitani and
+               Minh-Triet Tran and
+               Ngan Le},
+  title     = {AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation},
+  booktitle = {32nd British Machine Vision Conference 2021, {BMVC} 2021, Virtual
+               Event, UK, November 22-25, 2021},
+  publisher = {{BMVA} Press},
+  year      = {2021},
+  url       = {https://www.bmvc2021-virtualconference.com/assets/papers/1095.pdf}
+}
+```
+
+
+## Contact
+Khoa Vo:
+```
+khoavoho@uark.edu
+```
+

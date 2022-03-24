@@ -1,71 +1,77 @@
-# BMN: Boundary-Matching Network
+# AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation
 
 A pytorch-version implementation codes of paper:
- "BMN: Boundary-Matching Network for Temporal Action Proposal Generation",
-  which is accepted in ICCV 2019. 
+ "AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation",
+  which is accepted in BMVC 2021.
 
-[[Arxiv Preprint]](https://arxiv.org/abs/1907.09702)
+## Installation Guide
 
-## Result
-__Update(2019-10-17)__: 
-I update the pytorch BMN codebase according to PaddlePaddle code provided by Baidu officially.
-Now my codebase get very close results to the paper. Actually my results are slightly __higher__ 
-than the original paper. The model can be download [here](https://pan.baidu.com/s/1Fm4niHixw53cdhuuhf5baA).
+1. conda create -n aei python=3.8
+2. conda activate aei
+3. conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
+4. pip install tqdm pandas tensorboard matplotlib fvcore scipy
+5. cd into tapg-aei (root)
+6. git clone https://github.com/frostinassiky/align1d
+7. cd into tapg-aei/align1d
+8. pip install -e .
+9. cd ..
 
+## Download Features
+3D Resnet-50 features extracted from rescaled videos of ActivityNet-1.3 can be downloaded below:
+* Environment features are [here](https://drive.google.com/file/d/1hPhcQ7EzyCh0A3SyZfgZScFVFZMEvVhe/view?usp=sharing) (~80GB uncompressed).
+* Actor features are [here](https://drive.google.com/file/d/1lOQG1FgDseRKDs3RNgpKd000OOZiag1s/view?usp=sharing) (~215GB uncompressed).
 
-|  AN  | Recall |
-| ---- |  ----  |
-| AR@1 |  33.7% |
-| AR@5 |  49.6% |
-| AR@10|  57.1% |
-|AR@100|  75.3% |
-| AUC  |  67.5  |
+## Training and Testing  of AEI
+Default configurations of AEI are stored in config/defaults.py.
+The modified configurations are stored in config/*.yaml for training and testing of AEI on different datasets (ActivityNet-1.3 and THUMOS-14).
+We can also modify configurations through commandline arguments.
 
-
-![](./img/evaluation_result.jpg)
-
-## Prerequisites
-
-These code is  implemented in Pytorch 0.4.1 + Python3 . 
-
-
-## Download Datasets
-
- The author rescaled the feature length of all videos 
-to same length 100, and he provided the rescaled feature at 
- [here](https://github.com/wzmsltw/BSN-boundary-sensitive-network) .
-
-
-## Training and Testing  of BMN
-
-All configurations of BMN are saved in opts.py, where you can modify training and model parameter.
-
-
-
-1. To train the BMN:
+1. To train AEI on TAPG task of ActivityNet-1.3 with 1 GPU:
 ```
-python main.py --mode train
+python main.py --cfg-file config/anet_proposals.yaml MODE 'training' GPU_IDS [0]
 ```
 
-2. To get the inference proposal of the validation videos and evaluate the proposals with recall and AUC:
+2. To evaluate AEI on validation set of ActivityNet-1.3 with 1 GPU:
 ```
-python main.py --mode inference
+python main.py --cfg-file config/anet_proposals.yaml MODE 'validation' GPU_IDS [0]
 ```
-
-Of course, you can complete all the process above in one line: 
-
-```
-sh bmn.sh
-```
-
-
 
 ## Reference
 
-This implementation largely borrows from [BSN](https://github.com/wzmsltw/BSN-boundary-sensitive-network) by [Tianwei Lin](https://github.com/wzmsltw).
+This implementation is partly based on this [pytorch-implementation of BMN](https://github.com/JJBOY/BMN-Boundary-Matching-Network.git) for the boundary matching module.
 
-code:[BSN](https://github.com/wzmsltw/BSN-boundary-sensitive-network)
+paper: [AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation](https://arxiv.org/abs/2110.11474)
 
-paper:[BMN: Boundary-Matching Network for Temporal Action Proposal Generation](https://arxiv.org/abs/1907.09702)
 
+## Q&A
+1q. "UserWarning: This DataLoader will create 12 worker processes in total. Our suggested max number of worker in current system is #, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary."
+
+1a. Change num_workers to # in line 171 of root>main.py>inference function
+
+## Citation
+If you find AEI useful for your research, please consider citing:
+```
+@inproceedings{khoavo_aei_bmvc21,
+  author    = {Khoa Vo and 
+               Hyekang Joo and 
+               Kashu Yamazaki and 
+               Sang Truong and 
+               Kris Kitani and 
+               Minh-Triet Tran and 
+               Ngan Le},
+  title     = {AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation},
+  booktitle = {32nd British Machine Vision Conference 2021, {BMVC} 2021, Virtual
+               Event, UK, November 22-25, 2021},
+  publisher = {{BMVA} Press},
+  year      = {2021},
+  url       = {https://www.bmvc2021-virtualconference.com/assets/papers/1095.pdf}
+}
+```
+
+
+## Contact
+Khoa Vo:
+```
+khoavoho@uark.edu
+```
 

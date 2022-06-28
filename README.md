@@ -1,5 +1,7 @@
 # AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/aei-actors-environment-interaction-with/temporal-action-proposal-generation-on)](https://paperswithcode.com/sota/temporal-action-proposal-generation-on?p=aei-actors-environment-interaction-with)
+
 A pytorch-version implementation codes of paper:
  "AEI: Actors-Environment Interaction with Adaptive Attention for Temporal Action Proposals Generation",
   which is accepted in BMVC 2021.

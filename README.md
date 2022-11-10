@@ -54,7 +54,7 @@ paper: [AEI: Actors-Environment Interaction with Adaptive Attention for Temporal
 ## Citation
 If you find AEI useful for your research, please consider citing:
 ```
-@article{khoavoAEI2021,
+@inproceedings{vo2021aei,
   author    = {Khoa Vo and
                Hyekang Joo and
                Kashu Yamazaki and
@@ -64,12 +64,12 @@ If you find AEI useful for your research, please consider citing:
                Ngan Le},
   title     = {{AEI:} Actors-Environment Interaction with Adaptive Attention for
                Temporal Action Proposals Generation},
-  journal   = {CoRR},
-  volume    = {abs/2110.11474},
+  booktitle = {32nd British Machine Vision Conference 2021, {BMVC} 2021, Online,
+               November 22-25, 2021},
+  pages     = {111},
+  publisher = {{BMVA} Press},
   year      = {2021},
-  url       = {https://arxiv.org/abs/2110.11474},
-  eprinttype = {arXiv},
-  eprint    = {2110.11474},
+  url       = {https://www.bmvc2021-virtualconference.com/assets/papers/1095.pdf}
 }
 ```
 
